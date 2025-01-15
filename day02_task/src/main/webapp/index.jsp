@@ -19,7 +19,7 @@
 		<input type="radio" id="male" name="gender" value="남자">
 		<label for="male">남자</label>
 		<input type="radio" id="female" name="gender" value="여자">
-		<label for="felmale">여자</label><br>
+		<label for="female">여자</label><br>
 
 		<label>취미 : </label><br>
 		<input type="checkbox" name="hobby" value="운동">운동<br>
