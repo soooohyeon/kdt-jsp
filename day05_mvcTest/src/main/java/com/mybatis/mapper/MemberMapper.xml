@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	<!-- config.xml 파일에 alias 설정으로 2번째 줄에 작성한것처럼 DTO 파일명만 사용 가능 -->
+	<!-- <insert id ="join" parameterType="com.example.app.dto.MemberDTO"> -->
+	<insert id ="join" parameterType="MemberDTO">
+		INSERT INTO TBL_MEMBER (MEMBER_NUMBER, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_AGE, MEMBER_GENDER)
+		VALUES (seq_member.nextVal, #{memberId}, #{memberPw}, #{memberName}, #{memberAge}, #{memberGender})
+	</insert>
+</mapper>

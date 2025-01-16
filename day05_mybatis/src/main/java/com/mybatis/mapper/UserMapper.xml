@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+   <insert id="join" parameterType="map">
+      insert into tbl_user(user_number, user_id, user_pw, user_name, user_age, user_gender)
+      values(seq_user.nextVal, #{userId}, #{userPw}, #{userName}, #{userAge}, #{userGender})
+   </insert>
+   
+   <!-- count는 갯수로 반환되기 때문에 반환타입을 정수로 지정해줌 -->
+   <select id="login" parameterType = "map" resultType = "int">
+   		select count(*) from tbl_user
+   		where user_id = #{userId} and user_pw = #{userPw}
+   </select>
+   
+   <!-- String 타입은 소 / 대문자 상관 없음 -->
+   <!-- parameterType 간혹 오류 발생하는 경우가 있어 문자열일 경우 대문자로 작성할 것 -->
+   <select id="checkId" parameterType = "String" resultType="int">
+   		select count(*) from tbl_user
+   		where user_id = #{userId}
+   </select>
+</mapper>
