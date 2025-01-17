@@ -12,7 +12,7 @@
 </head>
 <body>
 	<main>
-		<form action="" method="post">
+		<form action="${pageContext.request.contextPath}/member/loginOk.me" method="post">
 			<div class="id">
 				id : <input type="text" name="memberId">
 			</div>

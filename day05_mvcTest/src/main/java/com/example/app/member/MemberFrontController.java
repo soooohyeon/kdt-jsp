@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
-
-import com.example.app.dto.MemberDTO;
-import com.mybatis.config.MyBatisConfig;
+import com.example.app.Result;
 
 /**
  * Servlet implementation class MemberFrontController
@@ -61,6 +58,7 @@ public class MemberFrontController extends HttpServlet {
 	      String target = request.getRequestURI().substring(request.getContextPath().length());
 	      System.out.println(target);
 	      
+	      Result result = null;
 	      
 	      switch(target) {
 	      case "/member/join.me" :
@@ -73,26 +71,32 @@ public class MemberFrontController extends HttpServlet {
 	    	  
 //	    	  ------------------------------------------------------------------------------------
 //	    	  아래 작성한 로직은 비즈니스 로직으로 프론트 컨트롤러에 작성 x
-//	    	  각 컨트롤러에서 작업 예정
+//	    	  각 Controller와 DAO에서 작업 예정
+
+//	    	  비즈니스 로직 정리 - 만들어둔 메소드 사용을 위해 선언해줌
+	    	  result = new JoinOkController().execute(request, response);
 	    	  
-//	    	  sqlSession 사용
-	    	  MemberDTO memberDTO = new MemberDTO();
-	    	  System.out.println(memberDTO);
-	    	  
-	    	  memberDTO.setMemberId(request.getParameter("memberId"));
-	    	  memberDTO.setMemberPw(request.getParameter("memberPassword"));
-	    	  memberDTO.setMemberName(request.getParameter("memberName"));
-//	    	  valueOf()	: 문자열을 Integer 타입으로 바꿔줌
-//	    	  pareInt() 와의 차이는 parseInt()는 문자열이 숫자가 아닐 경우 numberFormatException이 발생
-//	    	  But, valueOf()는 null을 반환함 / 즉, 예외로 인한 강제종료가 되지 않음
-	    	  memberDTO.setMemberAge(Integer.valueOf(request.getParameter("memberAge")));
-	    	  memberDTO.setMemberGender(request.getParameter("memberGender"));
-	    	  
-	    	  SqlSession sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
-	    	  sqlSession.insert("member.join", memberDTO);
+//	    	  비즈니스 로직 정리 - 아래 글은 MemberDAO로 이동
+////	    	  sqlSession 사용
+//	    	  MemberDTO memberDTO = new MemberDTO();
+//	    	  System.out.println(memberDTO);
+//	    	  
+//	    	  memberDTO.setMemberId(request.getParameter("memberId"));
+//	    	  memberDTO.setMemberPw(request.getParameter("memberPassword"));
+//	    	  memberDTO.setMemberName(request.getParameter("memberName"));
+////	    	  valueOf()	: 문자열을 Integer 타입으로 바꿔줌
+////	    	  pareInt() 와의 차이는 parseInt()는 문자열이 숫자가 아닐 경우 numberFormatException이 발생
+////	    	  But, valueOf()는 null을 반환함 / 즉, 예외로 인한 강제종료가 되지 않음
+//	    	  memberDTO.setMemberAge(Integer.valueOf(request.getParameter("memberAge")));
+//	    	  memberDTO.setMemberGender(request.getParameter("memberGender"));
+	    	
+//	    	  비즈니스 로직 정리 - 아래 2줄은 joinOkController로 이동
+//	    	  SqlSession sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
+//	    	  sqlSession.insert("member.join", memberDTO);
 	    	  
 //	    	  사용자가 입력한 데이터를 계속 가져가지 않고 페이지를 새로고침하기 위해 redirect 방식 사용
-	    	  response.sendRedirect(request.getContextPath());
+//	    	  request.getContextPath() = 루트 경로 / 즉, index.jsp 페이지로 이동됨
+//	    	  response.sendRedirect(request.getContextPath());
 	    	  
 	    	  break;
 	    	  
@@ -102,11 +106,18 @@ public class MemberFrontController extends HttpServlet {
 	    	  break;
 	    	  
 	      case "/member/loginOk.me" :
-	    	  System.out.println("loginok~~~!!!!!");
+	    	  System.out.println("login ok~~~!!!!!");
+	    	  result = new LoginOkController().execute(request, response);
 	    	  break;
 	      }
 	      
-	      
+	      if(result != null) {
+	          if(result.isRedirect()) {
+	             response.sendRedirect(result.getPath());
+	          }else {
+	             request.getRequestDispatcher(result.getPath());
+	          }
+	       }
 	      
 	}
 

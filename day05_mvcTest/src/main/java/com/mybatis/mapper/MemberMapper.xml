@@ -8,4 +8,10 @@
 		INSERT INTO TBL_MEMBER (MEMBER_NUMBER, MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_AGE, MEMBER_GENDER)
 		VALUES (seq_member.nextVal, #{memberId}, #{memberPw}, #{memberName}, #{memberAge}, #{memberGender})
 	</insert>
+	
+	<select id="login" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_number, member_id, member_password, member_name, member_age, member_gender
+		from tbl_member
+		where member_id = #{memberId} and member_password = #{memberPassword}
+	</select>
 </mapper>
