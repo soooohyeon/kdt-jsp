@@ -37,12 +37,15 @@ public class BoardWriteOkController implements Execute {
 		}
 		
 //		파일이 저장될 경로
-		final String UPLOAD_PATH = "D:\\web_0900_psh\\jsp_6\\workspace\\final_jsp\\src\\main\\webapp\\upload";
+//		final String UPLOAD_PATH = "D:\\web_0900_psh\\jsp_6\\workspace\\final_jsp\\src\\main\\webapp\\upload";
+		final String UPLOAD_PATH = "D:\\kdt_0900_psh\\jsp_6\\workspace\\final_jsp\\src\\main\\webapp\\upload";
+
+//		배포시 지정할 경로
+//		.metadata/.plugins/.../wtpwebapps/ 내부 경로가 반환되는 이유는 Eclipse의 WTP (Web Tools Platform) 서버 설정 때문
 //		final String UPLOAD_PATH = request.getSession().getServletContext().getRealPath("upload/");
-//		final String UPLOAD_PATH = request.getRealPath("/upload");
 //		final String UPLOAD_PATH = 
 		System.out.println("===================================");
-		System.out.println("11111 : " + request.getRealPath("/upload"));
+		System.out.println("11111 : " + UPLOAD_PATH);
 		System.out.println("222222 : " + request.getSession().getServletContext().getRealPath("/"));
 		System.out.println("333333333 : " + request.getSession().getServletContext().getRealPath("upload/"));
 		System.out.println("===================================");

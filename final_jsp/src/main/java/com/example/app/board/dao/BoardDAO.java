@@ -32,14 +32,13 @@ public class BoardDAO {
 //		작성한 게시판 글 저장
 		int insert = sqlSession.insert("board.insert", boardDTO);
 		
-		System.out.println("=== 게시글 작성 DAO ===");
-		System.out.println("생성된 boardNumber : "  + boardDTO.getBoardNumber());
-		System.out.println("insert : "  + insert);
-		System.out.println("====================");
+//		System.out.println("=== 게시글 작성 DAO ===");
+//		System.out.println("생성된 boardNumber : "  + boardDTO.getBoardNumber());
+//		System.out.println("insert : "  + insert);
+//		System.out.println("====================");
 		
 //		가장 최근에 작성한 게시판글 번호 반환
 //		return sqlSession.selectOne("board.getCurrentBoardNumber");
-
 //		BoardMapper에 selectKey 사용시
 		return boardDTO.getBoardNumber();
 	}

@@ -52,7 +52,7 @@
 		INSERT INTO tbl_board
 		(board_number, board_title, board_content, member_number)
 		VALUES
-		(seq_board.NEXTVAL, #{boardTitle}, #{boardContent}, #{memberNumber})
+		(seq_board.CURRVAL, #{boardTitle}, #{boardContent}, #{memberNumber})
 	</insert>
 
 	<!-- 마지막 생성된 시퀀스 값을 가져오는 쿼리 -->
