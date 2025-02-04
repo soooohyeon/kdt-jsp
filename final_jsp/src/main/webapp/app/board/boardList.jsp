@@ -40,8 +40,7 @@
 	<div class="container">
 		<div class="write-btn-wrap">
 			<!-- 글쓰기 페이지 이동 처리 -->
-			<a href="${ pageContext.request.contextPath }/board/boardWrite.bo"
-				class="write-btn">글쓰기</a>
+			<a href="/board/boardWrite.bo" class="write-btn">글쓰기</a>
 		</div>
 		<div class="board-list">
 			<div class="board-header">
@@ -63,15 +62,17 @@
 								<div class="board-item title">
 									<!-- 제목 클릭 시 상세 페이지로 이동 -->
 									<a
-										href="${pageContext.request.contextPath}/board/boardRead.bo?boardNumber=${board.boardNumber}">
-										<c:out value="${board.boardTitle}" />
+										href="${pageContext.request.contextPath}/board/boardReadOk.bo?boardNumber=${board.getBoardNumber()}">
+										<c:out value="${board.getBoardTitle()}" />
 									</a>
 								</div>
 								<div class="board-item author">
 									<c:out value="${board.getMemberId()}" />
 								</div>
 								<div class="board-item date">
-									<c:out value="${board.getBoardDate()}" />
+									<%-- <c:out value="${board.getBoardDate()}" /> --%>
+									<!-- 날짜 타입을 YYYY-MM-DD 형식으로 문자열 자르기 -->
+									<c:out value="${fn:substring(board.boardDate, 0, 10)}" />
 								</div>
 								<div class="board-item hit">
 									<c:out value="${board.getBoardReadCount()}" />
@@ -117,6 +118,7 @@
 						href="${pageContext.request.contextPath}/board/boardListOk.bo?page=${startPage - 1}"
 						class="prev">&lt;</a></li>
 				</c:if>
+				<c:set var="realStartPage" value="${startPage < 0 ? 0 : startPage }" />
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 					<c:choose>
 						<c:when test="${!(i == page)}">
@@ -151,8 +153,6 @@
 			let memberNumber = "${sessionScope.memberNumber}";
 		</script>
 		<!-- ++++++ -->
-
-		<script
-			src="${pagetContext.request.contextPath}/assets/js/boardRead.js"></script>
+	</div>
 </body>
 </html>

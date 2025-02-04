@@ -38,6 +38,7 @@ public class LoginOkController implements Execute {
 			System.out.println("세션값 : " + memberNumber);
 
 			if (remember != null) {
+//				쿠키 : 브라우저에서 기억함
 				Cookie cookie = new Cookie("memberId", memberId);
 				cookie.setMaxAge(60 * 60 * 24);
 				response.addCookie(cookie);
@@ -48,7 +49,10 @@ public class LoginOkController implements Execute {
 		}
 
 //		response.sendRedirect(path);
-		result.setRedirect(true);
+//		세션은 redirect가 되면 사라짐 → forward 방식으로 가야함
+//		redirect 방식으로 가고 싶다면 parameter로 전달해야함
+//		그러나 ID, PW 같은 경우 parameter로 뜨면 안되기 때문에 사용 X
+		result.setRedirect(false);
 		result.setPath(path);
 		return result;
 	}

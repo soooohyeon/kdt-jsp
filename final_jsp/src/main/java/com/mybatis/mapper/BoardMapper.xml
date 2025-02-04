@@ -22,17 +22,15 @@
             ) subquery
             WHERE ROWNUM <= #{endRow}
         )
-        WHERE rnum > #{startRow}
+        WHERE rnum >= #{startRow}
         ]]>
 	</select>
 
 	<!-- BoardMapper.xml에 total을 가져오기 위한 쿼리 작성 -->
 	<!-- 게시글 총 개수 -->
 	<select id="getTotal" resultType="int">
-        <![CDATA[
         SELECT COUNT(board_number) 
         FROM tbl_board
-        ]]>
 	</select>
 
 
@@ -46,6 +44,11 @@
 		조합해 자동으로 시퀀스 값을 객체 필드에 매핑가능 -->
 	<!-- 게시글 추가 -->
 	<insert id="insert" parameterType="BoardDTO">
+		<!-- insert문 사용 전 select 쿼리 먼저 실행 -->
+		<!-- 마지막 생성된 시퀀스 값을 가져오는 쿼리 -->
+		<selectKey keyProperty="boardNumber" resultType="int" order="BEFORE">
+        	SELECT seq_board.nextVal from dual
+   	   	</selectKey>
 		INSERT INTO tbl_board
 		(board_number, board_title, board_content, member_number)
 		VALUES
