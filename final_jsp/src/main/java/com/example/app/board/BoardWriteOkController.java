@@ -44,11 +44,6 @@ public class BoardWriteOkController implements Execute {
 //		.metadata/.plugins/.../wtpwebapps/ 내부 경로가 반환되는 이유는 Eclipse의 WTP (Web Tools Platform) 서버 설정 때문
 //		final String UPLOAD_PATH = request.getSession().getServletContext().getRealPath("upload/");
 //		final String UPLOAD_PATH = 
-		System.out.println("===================================");
-		System.out.println("11111 : " + UPLOAD_PATH);
-		System.out.println("222222 : " + request.getSession().getServletContext().getRealPath("/"));
-		System.out.println("333333333 : " + request.getSession().getServletContext().getRealPath("upload/"));
-		System.out.println("===================================");
 		
 //		파일 사이즈 최대 5MB
 		final int FILE_SIZE = 1024 * 1024 * 5;

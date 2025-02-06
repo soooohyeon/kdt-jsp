@@ -54,4 +54,15 @@ public class BoardDAO {
 		System.out.println("조회수 없데이트 결과 : " + result);
 	}
 	
+//	게시글 삭제
+	public void delete (int boardNum) {
+		sqlSession.delete("board.delete", boardNum);
+		System.out.println("게시글 삭제 완료");
+	}
+	
+//	게시글 수정
+	public void update (BoardDTO boardDTO) {
+		sqlSession.update("board.update", boardDTO);
+		System.out.println("게시글 수정 : " + boardDTO);
+	}
 }

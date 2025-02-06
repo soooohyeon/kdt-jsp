@@ -47,14 +47,11 @@ public class BoardFrontController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String target = request.getRequestURI().substring(request.getContextPath().length());
-		System.out.println(target);
+//		System.out.println(target);	// 루트 뒤 경로 출력
 		Result result = new Result();
 
 		switch (target) {
 		case "/board/boardListOk.bo":
-			System.out.println("리스트=========");
-//			// 임시로 이동 처리
-////			request.getRequestDispatcher("/app/board/boardList.jsp").forward(request, response);
 			result = new BoardListOkController().execute(request, response);
 			break;
 		case "/board/boardReadOk.bo":
@@ -66,16 +63,15 @@ public class BoardFrontController extends HttpServlet {
 		case "/board/boardWriteOk.bo":
 			result = new BoardWriteOkController().execute(request, response);
 			break;
-//		case "/board/boardDeleteOk.bo":
-//			result = new BoardDeleteOkController().execute(request, response);
-//			break;
-//
-//		case "/board/boardUpdate.bo":
-//			result = new BoardUpdateController().execute(request, response);
-//			break;
-//		case "/board/boardUpdateOk.bo":
-//			result = new BoardUpdateOkController().execute(request, response);
-//			break;
+		case "/board/boardDeleteOk.bo":
+			result = new BoardDeleteOkController().execute(request, response);
+			break;
+		case "/board/boardUpdate.bo":
+			result = new BoardUpdateController().execute(request, response);
+			break;
+		case "/board/boardUpdateOk.bo":
+			result = new BoardUpdateOkController().execute(request, response);
+			break;
 		}
 
 		if (result != null) {

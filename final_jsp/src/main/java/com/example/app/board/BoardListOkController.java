@@ -20,7 +20,7 @@ public class BoardListOkController implements Execute {
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		
-		System.out.println("========== BoardListOk 컨트롤러 ==========");
+//		System.out.println("========== BoardListOk 컨트롤러 ==========");
 		Result result = new Result();
 		BoardDAO boardDAO = new BoardDAO();
 		

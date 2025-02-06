@@ -1,8 +1,2 @@
 INDEX VERSION 1.4+D:\kdt_0900_psh\jsp_6\workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 1722103310.index
-2642937776.index
-979817099.index
-2069452985.index
-730966096.index
-2939781617.index
-1337168147.index

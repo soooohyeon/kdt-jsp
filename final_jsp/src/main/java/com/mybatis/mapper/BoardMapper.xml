@@ -103,12 +103,13 @@
 		#{boardNumber}
 	</update>
 
-	<!-- 삭제 쿼리 -->
+	<!-- 게시글 삭제 쿼리 -->
 	<delete id="delete" parameterType="int">
 		delete from tbl_board where
 		board_number = #{boardNumber}
 	</delete>
 
+	<!-- 게시글 수정 쿼리 -->
 	<update id="update" parameterType="BoardDTO">
 		update tbl_board
 		set

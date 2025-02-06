@@ -29,14 +29,16 @@ public class FileDAO {
 	         System.out.println("파일 저장이 실패되었습니다. " + e.getMessage());
 	         e.printStackTrace();
 	      }
-	      
    }
    
-   public List<FileDTO> select(int boardNumber){
-      return sqlSession.selectList("file.select", boardNumber);
+   public List<FileDTO> select(int boardnum){
+      return sqlSession.selectList("file.select", boardnum);
+   }
+   
+   public void delete(int boardNumber) {
+      sqlSession.delete("file.delete", boardNumber);
    }
 
-   
    
 }
 
